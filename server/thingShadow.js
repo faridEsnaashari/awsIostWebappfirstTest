@@ -14,7 +14,8 @@ thingShadow.on('connect', () => {
 
 let _get = (thingName) => {
 	thingShadow.register(thingName, null, () => {
-		thingShadow.get(thingName);
+		let clientToken = thingShadow.get(thingName);
+		return clientToken;
 	});
 };
 
