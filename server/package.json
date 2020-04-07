@@ -1,0 +1,16 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "this server publish on fandogh and give device status to client and get client desired state of thing and publish it to awsIOT topic",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "faridEsnaashari",
+  "license": "ISC",
+  "dependencies": {
+    "aws-iot-device-sdk": "^2.2.3",
+    "express": "^4.17.1"
+  }
+}
