@@ -27,10 +27,11 @@ let _get = (thingName) => {
 
 thingShadow.on('status', (thingName, stat, clientToken, stateObject) => {
 	topic.emit('someTopicAnswered', thingName, stat, clientToken, stateObject);
+	thingShadow.unregister('dev1');
+	console.log('device unregistered');
 });
 
 module.exports = {
 	get : _get,
-	response : thingShadow,
 	topic : topic
 };
