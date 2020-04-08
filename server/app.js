@@ -25,15 +25,12 @@ thingShadow.topic.on('publishedToGet', (clientToken) => {
 });
 
 
-thingShadow.response.on(
-	'status',
-	 (thingName, stat, clientToken, stateObject) => {
-		console.log('topic : ' + topicAnswered.answerToGet);
-		console.log('incommingCT : ' + clientToken);	
-		let responseJSON = statusHandler(thingName, stat, clientToken, stateObject, topicAnswered)
-		response.json(responseJSON);
-	}
-);
+thingShadow.topic.on('someTopicAnswered', (thingName, stat, clientToken, stateObject) => {
+        console.log('topic : ' + topicAnswered.answerToGet);
+        console.log('incommingCT : ' + clientToken);    
+        let responseJSON = statusHandler(thingName, stat, clientToken, stateObject, topicAnswered)
+        response.json(responseJSON);
+});
 //	console.log('thingName' + thingName);
 //	console.log('stat' + stat);
 //	console.log('clientToken' + clientToken);

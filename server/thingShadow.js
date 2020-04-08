@@ -23,6 +23,12 @@ let _get = (thingName) => {
 	});
 };
 
+
+
+thingShadow.on('status', (thingName, stat, clientToken, stateObject) => {
+	topic.emit('someTopicAnswered', thingName, stat, clientToken, stateObject);
+});
+
 module.exports = {
 	get : _get,
 	response : thingShadow,
