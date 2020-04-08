@@ -4,10 +4,19 @@ const statusHandler = (thingName, stat, clientToken, stateObject, topicAnswered)
 		responseJSON = handleGetAcceptedResponse(stateObject);
 	}
 	else if(clientToken === topicAnswered.answerToUpdate){
-		//responseText = handleUpdateAcceptedResponse(stateObject);		
+		responseJSON = handleUpdateAcceptedResponse(stateObject);		
 	}
 	return responseJSON;
 };
+
+
+function handleUpdateAcceptedResponse(stateObject){
+	const responseJSON = {
+		'ok' : true
+	};
+	return responseJSON; 
+}
+
 
 
 function handleGetAcceptedResponse(stateObject){

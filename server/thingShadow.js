@@ -18,20 +18,34 @@ thingShadow.on('connect', () => {
 let _get = (thingName) => {
 	thingShadow.register(thingName, null, () => {
 		let clientToken = thingShadow.get(thingName);
-		console.log('device registered');
 		topic.emit('publishedToGet', clientToken);
 	});
 };
 
 
 
+let _update = (thingName, state) => {
+	thingShadow.register(thingName, null, () => {
+		let awsStateObject = {
+			'state' : {
+				'desired' : state
+			}
+		};
+		let clientToken = thingShadow.update(thingName, state);
+		topic.emit('publishedToUpdate', clientToken);
+	});
+};
+
+
+
+
 thingShadow.on('status', (thingName, stat, clientToken, stateObject) => {
 	topic.emit('someTopicAnswered', thingName, stat, clientToken, stateObject);
 	thingShadow.unregister('dev1');
-	console.log('device unregistered');
 });
 
 module.exports = {
 	get : _get,
-	topic : topic
+	topic : topic,
+	update : _update
 };
