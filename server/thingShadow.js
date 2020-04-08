@@ -1,4 +1,7 @@
 const awsIot = require('aws-iot-device-sdk');
+const events  = require('events');
+
+const topic = new events.EventEmitter();
 
 const thingShadow = awsIot.thingShadow({
 	keyPath: './auth/a298c2e5d7-private.pem.key',
@@ -15,11 +18,13 @@ thingShadow.on('connect', () => {
 let _get = (thingName) => {
 	thingShadow.register(thingName, null, () => {
 		let clientToken = thingShadow.get(thingName);
-		return clientToken;
+		console.log('device registered');
+		topic.emit('publishedToGet', clientToken);
 	});
 };
 
 module.exports = {
 	get : _get,
-	response : thingShadow
+	response : thingShadow,
+	topic : topic
 };

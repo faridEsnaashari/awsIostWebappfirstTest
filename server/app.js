@@ -1,6 +1,6 @@
 express = require('express');
 thingShadow = require('./thingShadow');
-statusHnadler = require('./statusHandler');
+statusHandler = require('./statusHandler');
 
 app = express();
 
@@ -15,15 +15,21 @@ let topicAnswered = {
 };
 
 app.get('/', (req, res) => {
-	topicAnswered.answerToGet = thingShadow.get('dev1');
+	thingShadow.get('dev1');
 	response = res;
 }); 
 
 
+thingShadow.topic.on('publishedToGet', (clientToken) => {
+	topicAnswered.answerToGet = clientToken;
+});
+
 
 thingShadow.response.on(
 	'status',
-	 (thingName, stat, clientToken, stateObject, response, topicAnswered) => {
+	 (thingName, stat, clientToken, stateObject) => {
+		console.log('topic : ' + topicAnswered.answerToGet);
+		console.log('incommingCT : ' + clientToken);	
 		let responseTextString = statusHandler(thingName, stat, clientToken, stateObject, topicAnswered)
 		response.end(responseTextString);
 	}
