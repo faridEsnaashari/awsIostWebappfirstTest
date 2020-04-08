@@ -1,18 +1,21 @@
 const statusHandler = (thingName, stat, clientToken, stateObject, topicAnswered) => {
-	let responseText = null;
+	let responseJSON = null;
 	if(clientToken === topicAnswered.answerToGet){
-		responseText = handleGetAcceptedResponse(stateObject);
+		responseJSON = handleGetAcceptedResponse(stateObject);
 	}
 	else if(clientToken === topicAnswered.answerToUpdate){
 		//responseText = handleUpdateAcceptedResponse(stateObject);		
 	}
-	return responseText;
+	return responseJSON;
 };
 
 
 function handleGetAcceptedResponse(stateObject){
-	console.log(typeof stateObject);
-	console.log(JSON.stringify(stateObject, null, 5));
+	const responseJSON = {
+		'ledColor' : stateObject.state.reported.color,
+		'temp' : stateObject.state.reported.temp
+	};
+	return responseJSON;
 }
 
 

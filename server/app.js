@@ -30,8 +30,8 @@ thingShadow.response.on(
 	 (thingName, stat, clientToken, stateObject) => {
 		console.log('topic : ' + topicAnswered.answerToGet);
 		console.log('incommingCT : ' + clientToken);	
-		let responseTextString = statusHandler(thingName, stat, clientToken, stateObject, topicAnswered)
-		response.end(responseTextString);
+		let responseJSON = statusHandler(thingName, stat, clientToken, stateObject, topicAnswered)
+		response.json(responseJSON);
 	}
 );
 //	console.log('thingName' + thingName);
@@ -41,8 +41,4 @@ thingShadow.response.on(
 	
 
 
-thingShadow.response.on('message', (topic, msg) => {
-	console.log(topic);
-	console.log(msg.toString());
-});
 
