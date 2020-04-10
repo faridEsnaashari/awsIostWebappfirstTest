@@ -1,3 +1,10 @@
 server/*.swp
 client/*.swp
 device/*.swp
+*.swp
+
+server/auth/*
+
+server/node_modules
+client/node_modules
+device/node_modules
