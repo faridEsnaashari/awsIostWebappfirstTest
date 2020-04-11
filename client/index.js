@@ -9,7 +9,7 @@ function sendDataToServer(){
 	const tempValue = document.getElementById('tempid').value;
 	
 	const httpSender = new XMLHttpRequest();
-	httpSender.open('POST', 'http://localhost:3000', true);
+	httpSender.open('POST', 'https://deviceshadowapiserver-fandoghnamespace.fandogh.cloud', true);
 	httpSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpSender.send('color=' + colorValue + '&temp=' + tempValue);
 }
@@ -21,7 +21,7 @@ function getDataFromServer(){
     const tempValue = document.getElementById('reportedTemp');
 
 	const httpSender = new XMLHttpRequest();
-	httpSender.open('GET', 'http://localhost:3000', true);
+	httpSender.open('GET', 'https://deviceshadowapiserver-fandoghnamespace.fandogh.cloud', true);
 	httpSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpSender.send();
 
