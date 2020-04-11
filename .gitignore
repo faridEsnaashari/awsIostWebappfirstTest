@@ -1,6 +1,7 @@
 server/*.swp
 client/*.swp
 device/*.swp
+*.swp
 
 server/auth/**
 
