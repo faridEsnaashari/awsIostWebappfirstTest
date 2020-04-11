@@ -31,7 +31,7 @@ let _update = (thingName, state) => {
 				'desired' : state
 			}
 		};
-		let clientToken = thingShadow.update(thingName, state);
+		let clientToken = thingShadow.update(thingName, awsStateObject);
 		topic.emit('publishedToUpdate', clientToken);
 	});
 };

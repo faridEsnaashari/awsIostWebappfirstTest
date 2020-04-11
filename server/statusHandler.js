@@ -21,8 +21,8 @@ function handleUpdateAcceptedResponse(stateObject){
 
 function handleGetAcceptedResponse(stateObject){
 	const responseJSON = {
-		'ledColor' : stateObject.state.reported.color,
-		'temp' : stateObject.state.reported.temp
+		'ledColor' : stateObject.state.desired.color,
+		'temp' : stateObject.state.desired.temp
 	};
 	return responseJSON;
 }

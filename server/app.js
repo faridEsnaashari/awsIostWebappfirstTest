@@ -17,6 +17,16 @@ let topicAnswered = {
 
 app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-origin', '*');
+    res.header('Access-Control-Allow-Headers', '*');
+
+    if(req.method === 'OPTIONS'){
+        res.header('Access-Control-Allow-Methods', 'POST, GET');
+        return res.status(200).json({});
+    }
+    next();
+});
 
 app.get('/', (req, res) => {
 	thingShadow.get('dev1');

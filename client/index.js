@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', () => {
+    setInterval(getDataFromServer, 1000);
 });
 
 
@@ -7,11 +8,32 @@ function sendDataToServer(){
 	const colorValue = document.getElementById('colorid').value;
 	const tempValue = document.getElementById('tempid').value;
 	
-	console.log(colorValue);
-	console.log(tempValue);
-	
 	const httpSender = new XMLHttpRequest();
-	httpSender.open('POST', 'localhost:3000', true);
+	httpSender.open('POST', 'http://localhost:3000', true);
 	httpSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	httpSender.send('color=' + colorValue + '&temp=' + tempValue);
+}
+
+
+
+function getDataFromServer(){
+    const colorValue = document.getElementById('reportedColor');
+    const tempValue = document.getElementById('reportedTemp');
+
+	const httpSender = new XMLHttpRequest();
+	httpSender.open('GET', 'http://localhost:3000', true);
+	httpSender.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	httpSender.send();
+
+    httpSender.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            const reportedValue = JSON.parse(this.responseText);
+
+            colorValue.value = reportedValue.ledColor;
+            tempValue.value = reportedValue.temp;
+
+            console.log(typeof this.responseText);
+
+        }
+    };
 }
